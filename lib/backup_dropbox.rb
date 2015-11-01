@@ -1,6 +1,6 @@
 #
 require 'dropbox-api'
-require 'zip/zip'
+require 'zip'
 require './lib/backup_pages'
 
 

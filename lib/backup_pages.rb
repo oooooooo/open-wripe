@@ -1,5 +1,5 @@
 #
-require 'zip/zip'
+require 'zip'
 
 module BackupPages
   def self.zip(user)
