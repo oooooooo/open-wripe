@@ -2,7 +2,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 
 FactoryGirl.find_definitions
 
@@ -10,7 +9,7 @@ ActiveSupport::Deprecation.behavior = :silence
 
 require 'capybara/rspec'
 Capybara.server_port = 57124
-Capybara.default_wait_time = 10
+Capybara.default_max_wait_time = 10
 
 # Capybara.javascript_driver = :selenium, :chrome or :safari
 Capybara.javascript_driver = ENV['DRIVER'] ? ENV['DRIVER'].to_sym : :webkit

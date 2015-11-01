@@ -7,7 +7,8 @@ class GhUser < ActiveRecord::Base
     ghid = profile['id'].to_s
     ghuser = GhUser.where(:ghid => ghid).first
     unless ghuser
-      ghuser = GhUser.create! :token => ghtoken, :ghid => ghid, :json => JSON.generate(profile)
+      # ghuser = GhUser.create! :token => ghtoken, :ghid => ghid, :json => JSON.generate(profile) #<JSON::GeneratorError: only generation of JSON objects or arrays allowed>
+      ghuser = GhUser.create! :token => ghtoken, :ghid => ghid, :json => profile.to_json
     end
     user = ghuser.user
     unless user
@@ -18,7 +19,7 @@ class GhUser < ActiveRecord::Base
       user = User.create! :username => username
       ghuser.update_attributes :user_id => user.id
     end
-    
+
     user.update_attributes :icon_url => profile['avatar_url']
     email = gh.emails.first rescue nil
     user.update_attributes :email => email unless email.blank?

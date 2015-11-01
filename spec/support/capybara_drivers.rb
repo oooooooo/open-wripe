@@ -25,7 +25,7 @@ Capybara.register_driver :ie do |app|
 end
 
 Capybara.register_driver :iphone do |app|
-  Capybara.default_wait_time = 30
+  Capybara.default_max_wait_time = 30
   Capybara::Selenium::Driver.new app,
     browser: :remote,
     url: "http://127.0.0.1:4723/wd/hub",
@@ -38,7 +38,7 @@ Capybara.register_driver :iphone do |app|
 end
 
 Capybara.register_driver :ipad do |app|
-  Capybara.default_wait_time = 30
+  Capybara.default_max_wait_time = 30
   Capybara::Selenium::Driver.new app,
     browser: :remote,
     url: "http://127.0.0.1:4723/wd/hub",
@@ -52,7 +52,7 @@ Capybara.register_driver :ipad do |app|
 end
 
 Capybara.register_driver :android do |app|
-  Capybara.default_wait_time = 30
+  Capybara.default_max_wait_time = 30
   Capybara::Selenium::Driver.new app,
     browser: :remote,
     url: "http://127.0.0.1:4723/wd/hub",
