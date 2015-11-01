@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20131014145849) do
 
-  create_table "chat_messages", force: true do |t|
+  create_table "chat_messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "chatroom_id"
     t.text     "body"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "chat_messages", ["chatroom_id"], name: "index_chat_messages_on_chatroom_id"
 
-  create_table "chatroom_users", force: true do |t|
+  create_table "chatroom_users", force: :cascade do |t|
     t.integer  "chatroom_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "chatroom_users", ["chatroom_id", "user_id"], name: "index_chatroom_users_on_chatroom_id_and_user_id", unique: true
 
-  create_table "chatrooms", force: true do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.string   "key"
     t.string   "name"
     t.string   "user_id"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "chatrooms", ["user_id"], name: "index_chatrooms_on_user_id"
 
-  create_table "dropbox_users", force: true do |t|
+  create_table "dropbox_users", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "auth_token"
     t.string   "auth_secret"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
     t.text     "backups"
   end
 
-  create_table "evernote_users", force: true do |t|
+  create_table "evernote_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "enid"
     t.string   "evernote_username"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "evernote_users", ["enid"], name: "index_evernote_users_on_enid", unique: true
   add_index "evernote_users", ["user_id"], name: "index_evernote_users_on_user_id", unique: true
 
-  create_table "fb_users", force: true do |t|
+  create_table "fb_users", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "token"
     t.text     "json"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "fb_users", ["user_id"], name: "index_fb_users_on_user_id"
 
-  create_table "feedbacks", force: true do |t|
+  create_table "feedbacks", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "closed"
     t.boolean  "opened"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "feedbacks", ["subject", "created_at"], name: "index_feedbacks_on_subject_and_created_at"
   add_index "feedbacks", ["user_id", "created_at"], name: "index_feedbacks_on_user_id_and_created_at"
 
-  create_table "gh_users", force: true do |t|
+  create_table "gh_users", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "ghid"
     t.text     "token"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "gh_users", ["user_id"], name: "index_gh_users_on_user_id"
 
-  create_table "helps", force: true do |t|
+  create_table "helps", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "key"
     t.string   "value"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "helps", ["user_id", "key"], name: "index_helps_on_user_id_and_key", unique: true
   add_index "helps", ["user_id"], name: "index_helps_on_user_id"
 
-  create_table "page_dates", force: true do |t|
+  create_table "page_dates", force: :cascade do |t|
     t.integer  "page_id"
     t.integer  "user_id"
     t.date     "date"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "page_dates", ["page_id"], name: "index_page_dates_on_page_id"
   add_index "page_dates", ["user_id", "date"], name: "index_page_dates_on_user_id_and_date"
 
-  create_table "page_histories", force: true do |t|
+  create_table "page_histories", force: :cascade do |t|
     t.integer  "page_id"
     t.text     "body"
     t.text     "title"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "page_histories", ["page_id", "created_at"], name: "index_page_histories_on_page_id_and_created_at"
 
-  create_table "page_properties", force: true do |t|
+  create_table "page_properties", force: :cascade do |t|
     t.integer  "page_id"
     t.string   "key"
     t.text     "value"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "page_properties", ["page_id", "key"], name: "index_page_properties_on_page_id_and_key", unique: true
 
-  create_table "page_taggings", force: true do |t|
+  create_table "page_taggings", force: :cascade do |t|
     t.integer  "page_id"
     t.integer  "page_tag_id"
     t.datetime "created_at"
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "page_taggings", ["page_id", "page_tag_id"], name: "index_page_taggings_on_page_id_and_page_tag_id", unique: true
 
-  create_table "page_tags", force: true do |t|
+  create_table "page_tags", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at"
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "page_tags", ["user_id", "page_taggings_count"], name: "index_page_tags_on_user_id_and_page_taggings_count"
   add_index "page_tags", ["user_id"], name: "index_page_tags_on_user_id_and_pages_count"
 
-  create_table "page_users", force: true do |t|
+  create_table "page_users", force: :cascade do |t|
     t.integer  "page_id"
     t.integer  "user_id"
     t.boolean  "read_permission",  default: true
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "page_users", ["page_id", "user_id"], name: "index_page_users_on_page_id_and_user_id", unique: true
   add_index "page_users", ["user_id"], name: "index_page_users_on_user_id"
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "title"
     t.text     "body"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "pages", ["user_id", "modified_at"], name: "index_pages_on_user_id_and_modified_at"
   add_index "pages", ["user_id", "updated_at"], name: "index_pages_on_user_id_and_updated_at"
 
-  create_table "user_messages", force: true do |t|
+  create_table "user_messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "page_id"
     t.boolean  "read",           default: false
@@ -227,7 +227,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
   add_index "user_messages", ["user_id", "read", "created_at"], name: "index_user_messages_on_user_id_and_read_and_created_at"
   add_index "user_messages", ["user_id", "sender_user_id", "created_at"], name: "idx_user_messages_6"
 
-  create_table "user_properties", force: true do |t|
+  create_table "user_properties", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "key"
     t.text     "value"
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(version: 20131014145849) do
 
   add_index "user_properties", ["user_id", "key"], name: "index_user_properties_on_user_id_and_key", unique: true
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"

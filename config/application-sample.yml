@@ -1,6 +1,6 @@
 defaults: &defaults
   flags:
-    disable_ar_async: off
+    disable_ar_async: on
 
 development:
   <<: *defaults
