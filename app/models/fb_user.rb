@@ -11,7 +11,7 @@ class FbUser < ActiveRecord::Base
     end
     user = fbuser.user
     unless user
-      username = fb_profile['username'] || fb_profile['first_name'].gsub(/\W/,'')[0,14].downcase
+      username = fb_profile['username'] || (fb_profile['first_name'] || fb_profile['name']).gsub(/\W/,'')[0,14].downcase
       while User.where(:username => username).count > 0
         username += rand(10).to_s
       end
